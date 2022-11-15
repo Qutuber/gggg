@@ -1,0 +1,15 @@
+import requests
+from bs4 import BeautifulSoup as bs
+req = requests.get('http://www.dowellcomputer.com/main.jsp')
+
+#print(req)
+html = req.text
+#print(html)
+soup = bs(html,'html.parser')
+
+link = soup.select('td > a')
+
+for link in links:
+    if link.has_attr('href'):
+        if link.get('href').find('notice') != -1:
+            print(link.text)
